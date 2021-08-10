@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class UserForm extends Component {
+class EditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            email: "",
-            number: "",
-            // id: Math.random().toString()
+            name: props.user.name || "",
+            email: props.user.email || "",
+            gen: props.user.gen || "",
+            id: props.user.id || ""
         }
     }
 
@@ -17,12 +17,13 @@ class UserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addUser(this.state);
+        this.props.editUser(this.state);
         this.setState({
             name: "",
             email: "",
             number: ""
-        })
+        });
+        this.props.closeModal();
     }
 
     render() {
@@ -47,7 +48,7 @@ class UserForm extends Component {
                     />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="gen">Number</label>
+                    <label htmlFor="gen">Gen</label>
                     <input
                         type="text"
                         name="number"
@@ -56,11 +57,11 @@ class UserForm extends Component {
                     />
                 </div>
                 <div className="form-control">
-                    <button type="submit">Submit</button>
+                    <button type="submit">Edit user</button>
                 </div>
             </form>
         );
     }
 }
 
-export default UserForm;
+export default EditForm;
