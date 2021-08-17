@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addUser } from '../Actions/UserActions'
 
 class UserForm extends Component {
     constructor(props) {
@@ -6,8 +8,7 @@ class UserForm extends Component {
         this.state = {
             name: "",
             email: "",
-            number: "",
-            // id: Math.random().toString()
+            gen: "",
         }
     }
 
@@ -17,11 +18,11 @@ class UserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addUser(this.state);
+        this.props.addNewUser(this.state);
         this.setState({
             name: "",
             email: "",
-            number: ""
+            gen: ""
         })
     }
 
@@ -47,20 +48,24 @@ class UserForm extends Component {
                     />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="gen">Number</label>
+                    <label htmlFor="gen">Gen</label>
                     <input
-                        type="text"
-                        name="number"
+                        type="number"
+                        name="gen"
                         value={this.state.gen}
                         onChange={this.handleChange}
                     />
                 </div>
                 <div className="form-control">
-                    <button type="submit">Submit</button>
+                    <button type="submit">Add user</button>
                 </div>
             </form>
         );
     }
 }
 
-export default UserForm;
+const mapDispatchToProps = {
+    addNewUser: addUser
+}
+
+export default connect(null, mapDispatchToProps)(UserForm);
