@@ -3,19 +3,6 @@ import UserList from "./Components/UserList";
 import UserForm from "./Components/UserForm";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [
-        {
-          name: 'John',
-          email: 'john@gmail.com',
-          age: '20'
-        }
-      ],
-    };
-  }
-
   handleAddUser = (newUser) => {
     newUser.id = Math.random().toString();
     this.setState({
@@ -43,14 +30,10 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div className="col-4">
-            <UserForm addUser={this.handleAddUser} />
+            <UserForm />
           </div>
           <div className="col">
-            <UserList
-              users={this.state.users}
-              deleteUser={this.handleDeleteUser}
-              editUser={this.handleEditUser}
-            />
+            <UserList />
           </div>
         </div>
       </div>
