@@ -1,4 +1,6 @@
-const initialstate = {
+import { ADD_USER } from '../Actions/UserActions';
+
+const initialState = {
     users: [
         {
           name: 'John',
@@ -8,10 +10,10 @@ const initialstate = {
       ],
     } 
 
-    const UsersReducer = (state={initialstate}, action)=> { 
+    const UsersReducer = (state=initialState, action)=> { 
         switch (action.type) { 
-            case "ADD_USER": 
-                return state 
+            case ADD_USER: 
+                return  {...state.users,users:[...state.users,action.payload] };
             default: 
                return state; 
         }
