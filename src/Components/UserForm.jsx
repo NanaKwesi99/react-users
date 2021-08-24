@@ -26,6 +26,16 @@ class UserForm extends Component {
         })
     }
 
+      handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.addNewUser(this.state);
+        this.setState({
+            name: "",
+            email: "",
+            gen: ""
+        })
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import { editUser } from '../Actions/UserActions'
 
-class EditForm extends Component {
+class EditUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +23,7 @@ class EditForm extends Component {
         this.setState({
             name: "",
             email: "",
-            number: ""
+            gen: ""
         });
         this.props.closeModal();
     }
@@ -50,8 +52,8 @@ class EditForm extends Component {
                 <div className="form-control">
                     <label htmlFor="gen">Gen</label>
                     <input
-                        type="text"
-                        name="number"
+                        type="number"
+                        name="gen"
                         value={this.state.gen}
                         onChange={this.handleChange}
                     />
@@ -64,4 +66,8 @@ class EditForm extends Component {
     }
 }
 
-export default EditForm;
+const mapDispatchToProps = {
+    editUser: editUser
+}
+
+export default connect(null, mapDispatchToProps)(EditUserForm);
