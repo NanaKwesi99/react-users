@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser } from '../Actions/UserActions'
+import { addUser, getAllusers } from '../Actions/UserActions'
 
 class UserForm extends Component {
     constructor(props) {
@@ -16,15 +16,15 @@ class UserForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.addNewUser(this.state);
-        this.setState({
-            name: "",
-            email: "",
-            gen: ""
-        })
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.addNewUser(this.state);
+    //     this.setState({
+    //         name: "",
+    //         email: "",
+    //         gen: ""
+    //     })
+    // }
 
       handleSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +34,9 @@ class UserForm extends Component {
             email: "",
             gen: ""
         })
+    }
+    componentDidMount(){
+        this.props.getAllusers()
     }
 
     render() {
@@ -75,7 +78,8 @@ class UserForm extends Component {
 }
 
 const mapDispatchToProps = {
-    addNewUser: addUser
+    addNewUser: addUser,
+    getAllusers: getAllusers,
 }
 
 export default connect(null, mapDispatchToProps)(UserForm);
