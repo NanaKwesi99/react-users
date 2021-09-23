@@ -25,6 +25,8 @@ const usersReducer = (state = initialState, action) => {
       return {...state, users: state.users.map((user) =>
         user.id === action.payload.id ? action.payload : user
       )}
+      case'SET_ALL_USERS':
+      return{...state, users: action.payload}
     default:
       return state;
   }
