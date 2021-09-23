@@ -1,4 +1,4 @@
-import { getFirestore } from "redux-firestore";
+// import { getFirestore } from "redux-firestore";
 
 export const ADD_USER ="ADD_USER";
 export const DELETE_USER ="DELETE_USER";
@@ -30,4 +30,19 @@ export const editUser = (updatedUser) => {
         type: "EDIT_USER",
         payload: updatedUser
     }
+}
+
+export const getAllusers =()=>{
+return(dispatch, state, {getFirestore})=>{
+getFirestore().collection('contact').onSnapshot((snapshot)=>{
+let contact =[];
+snapshot.forEach((doc)=>{
+    contact.push(doc.data())
+});
+dispatch({
+    type: 'SET_ALL_USERS',
+    payload: contact
+})
+})
+};
 }
